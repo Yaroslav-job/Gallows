@@ -13,8 +13,10 @@ func word_start(select_word string) {
 }
 
 func board() {
-	for i := 0; i < len(word); i++ {
-		fmt.Printf("%s", word[i])
+	if !gameOver {
+		for i := 0; i < len(word); i++ {
+			fmt.Printf("%s", word[i])
+		}
+		fmt.Printf("\n")
 	}
-	fmt.Printf("\n")
 }

@@ -7,11 +7,12 @@ import (
 	"strings"
 )
 
-var gameOver = false
+var gameOver bool
 var word []string
 
 func game() {
 	var content string
+	var expectation int
 	file, err := os.Open("dictionary.txt")
 	if err != nil {
 		fmt.Println("Ошибка чтения файла")
@@ -32,8 +33,20 @@ func game() {
 		letter := input()
 		n := check_letter(select_word, letter)
 		clear()
-		board()
 		check_win(n, select_word)
+		board()
+	}
+
+	fmt.Println("\nВведите: \n1 - Чтобы начать новую игру \n2 - чтобы выйти из игры")
+	for {
+		fmt.Scan(&expectation)
+		if expectation == 1 {
+			main()
+		} else if expectation == 2 {
+			os.Exit(0)
+		} else {
+			fmt.Println("Вы ввели недопустимое значение. Попробуйте ещё раз:")
+		}
 	}
 }
 
